@@ -36,6 +36,11 @@ int phoneticizeWord(
 		     const char* g2pmodel_file, string testword, 
 		     int nbest, string sep, bool mbrdecoder, float alpha, float precision, float ratio, int order,
 		     int beam=500, int output_words=0 ){
+
+  if(testword == ""){
+	return -1;
+  }
+
     
   Phonetisaurus phonetisaurus( g2pmodel_file, mbrdecoder, alpha, precision, ratio, order );
 
@@ -82,7 +87,6 @@ int main( int argc, char **argv ) {
   string usage = "phonetisaurus-g2p decoder.\n\n Usage: ";
   set_new_handler(FailedNewHandler);
   SetFlags(usage.c_str(), &argc, &argv, false );
-
 
     //Otherwise we just have a word
     phoneticizeWord(    
